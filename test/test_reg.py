@@ -1,21 +1,19 @@
-"""  This page is the page where pytest detects automatically and
-    through which all the methods or APIs are called through  """
-
-from config import *
+import pytest
 from pom.irctc_pom import Register
 from pom.flight_pom import FlightRegister
-from Library.basefixture import Driver_init
+from config import url
 
-class Test_demo(Driver_init):
+@pytest.mark.usefixtures("driver_init")
+class Test_demo:
 
     def test_object(self):
-        assert url == self.driver.current_url, "URL did not match"
-        obj = Register(self.driver)
-        obj.alert_ok()
-        obj.click_on_flight()
-        obj.window_switch()
 
-    def test_object_flight(self):
+        assert url == self.driver.current_url, "URL did not match"
+        obj_reg = Register(self.driver)
+        obj_reg.alert_ok()
+        obj_reg.click_on_flight()
+        obj_reg.window_switch()
+
         obj=FlightRegister(self.driver)
         obj.pop_up_ok()
         res_of_round_button= obj.round_trip()
@@ -31,8 +29,11 @@ class Test_demo(Driver_init):
         self.res_of_search_button = obj.search()
         assert self.res_of_search_button == True, "Book button is not displayed"
         self.res_of_book_button=obj.book()
+        obj.normal_fair()
         assert self.res_of_search_button == True, "GST pop button not displayed"
         obj.gst_pop_up()
+
+
 
 
 
