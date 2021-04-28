@@ -1,20 +1,20 @@
 import pytest
 from pom.irctc_pom import Register
 from pom.flight_pom import FlightRegister
-from conftest import url,driver
+from config import url
 
 @pytest.mark.usefixtures("driver_init")
 class Test_demo:
 
     def test_object(self):
 
-        assert url == driver.current_url, "URL did not match"
-        obj_reg = Register(driver)
+        assert url == self.driver.current_url, "URL did not match"
+        obj_reg = Register(self.driver)
         obj_reg.alert_ok()
         obj_reg.click_on_flight()
         obj_reg.window_switch()
 
-        obj=FlightRegister(driver)
+        obj=FlightRegister(self.driver)
         obj.pop_up_ok()
         res_of_round_button= obj.round_trip()
         assert res_of_round_button == True, "Round trip radio button is not selected"
