@@ -1,12 +1,10 @@
-from Library.web_utility import GenericMethod
-from Library.file_library import ReadJson
-from config import OBJECT_JSON
+from pom import *
 
-class Register():
+class Register:
 
     def __init__(self, driver):
         self.driver = driver
-        self.variable1 =ReadJson.read_locators(OBJECT_JSON)
+        self.variable1 = ReadJson.read_locators(OBJECT_JSON)
         self.ObjectGen = GenericMethod()
 
     def alert_ok(self):
@@ -19,3 +17,4 @@ class Register():
         win_handles = self.driver.window_handles
         self.driver.switch_to.window(win_handles[1])
         return self.ObjectGen.get_page_title(self.driver)
+

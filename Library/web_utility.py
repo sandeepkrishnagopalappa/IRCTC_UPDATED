@@ -1,6 +1,5 @@
 """module for all generic methods"""
 
-
 class GenericMethod:
     """click, text, radio button, check box"""
 
@@ -11,7 +10,7 @@ class GenericMethod:
         driver.find_element(locator_type,locator_value).click()
 
     @staticmethod
-    def enter_text(driver,locator,*,values):
+    def enter_text(driver,locator,values):
         """entering the text"""
         locator_type,locator_value=locator
         driver.find_element(locator_type,locator_value).send_keys(str(values))
