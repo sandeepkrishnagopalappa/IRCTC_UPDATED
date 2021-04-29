@@ -1,11 +1,12 @@
-from Library.web_utility import GenericMethod
-from Library.file_library import ReadJson
-from config import OBJECT_JSON
+from pom import *
+
 
 class FlightRegister():
 
-    def __init__(self, driver):
+    def __init__(self, driver, first, second):
         self.driver = driver
+        self.first = first
+        self.second= second
         self.variable1_ = ReadJson.read_locators(OBJECT_JSON)
         self.ObjectGen_ = GenericMethod()
 
@@ -17,34 +18,26 @@ class FlightRegister():
         return self.ObjectGen_.validate_element_display(self.driver,self.variable1_["return_date_click"])
 
     def station_from_sending_keys(self):
-        self.ObjectGen_.enter_text(self.driver, self.variable1_["station_from_sending_keys"], values="Chennai")
-
-    def station_from_click(self):
+        self.ObjectGen_.enter_text(self.driver, self.variable1_["station_from_sending_keys"],self.first)
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["station_from_click"])
 
     def station_to_sending_keys(self):
-        self.ObjectGen_.enter_text(self.driver, self.variable1_["station_to_sending_keys"], values="Mumbai")
-
-    def station_to_click(self):
+        self.ObjectGen_.enter_text(self.driver, self.variable1_["station_to_sending_keys"],self.second)
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["station_to_click"])
 
     def start_date_select(self):
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["start_date_select"])
 
-    def return_date_click(self):
-       self.ObjectGen_.click_on_element(self.driver, self.variable1_["return_date_click"])
-
-    def apirl_month_select(self):
+    def return_date_click_select(self):
+        self.ObjectGen_.click_on_element(self.driver, self.variable1_["return_date_click"])
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["apirl_month_select"])
-
-    def return_date_select(self):
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["return_date_select"])
 
     def search(self):
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["search"])
         return self.ObjectGen_.validate_element_display(self.driver,self.variable1_["book"])
 
-    def book(self):
+    def book_button_click(self):
         self.ObjectGen_.click_on_element(self.driver, self.variable1_["book"])
 
     def normal_fair(self):

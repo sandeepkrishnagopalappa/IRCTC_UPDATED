@@ -1,5 +1,5 @@
 import json
-from Data import object_json
+from Data import data_sendkeys
 
 """ In this file  i have kept all the locator type and locator value in the dictionary format and converting
     them to json format """
@@ -54,6 +54,6 @@ data = {
                         "locatorValue":"//button[text()='No ']"}
 }
 
-with open(object_json, 'w+') as fileobj:
+with open(data_sendkeys, 'w+') as fileobj:
     json.dump(data, fileobj, indent=4)
 
